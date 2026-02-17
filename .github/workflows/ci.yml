@@ -120,24 +120,24 @@ jobs:
             PYTHON_VERSION: '3.13'
             WITH_SCIPY: yes
             WITH_LLVM: 5.0
-            OS: macos-13
+            OS: macos-15-intel
             CC: clang
 
           - BUILD_TYPE: Release
             PYTHON_VERSION: '3.9'
             WITH_NUMPY: no
-            OS: macos-13
+            OS: macos-15-intel
             CC: clang
 
           - BUILD_TYPE: Debug
             PYTHON_VERSION: '3.13'
             WITH_NUMPY: no
-            OS: macos-13
+            OS: macos-15-intel
             CC: gcc
 
           - BUILD_TYPE: Release
             PYTHON_VERSION: '3.13'
-            OS: macos-13
+            OS: macos-15-intel
             CC: gcc
 
           - BUILD_TYPE: Release
