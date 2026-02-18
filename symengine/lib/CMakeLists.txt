@@ -31,11 +31,16 @@ add_custom_command(
     COMMENT "Preprocessing symengine_wrapper.in.pyx"
 )
 
+if ("${CYTHON_VERSION}" VERSION_GREATER_EQUAL "3.1")
+  set(CYTHON_EXTRA_ARGS "-Xfreethreading_compatible=True")
+endif()
+
 cython_transpile(
   ${CMAKE_CURRENT_BINARY_DIR}/symengine_wrapper.pyx
   LANGUAGE CXX
   OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/symengine_wrapper.cpp
   CYTHON_ARGS
+    ${CYTHON_EXTRA_ARGS}
     -I ${CMAKE_CURRENT_BINARY_DIR}
     -I ${CMAKE_CURRENT_SOURCE_DIR}
 )
@@ -101,7 +106,7 @@ install(
   FILES
     __init__.py
     symengine.pxd
-    symengine_wrapper.pxd
+    ${CMAKE_CURRENT_BINARY_DIR}/symengine_wrapper.pxd
     pywrapper.h
   DESTINATION symengine/lib
 )
